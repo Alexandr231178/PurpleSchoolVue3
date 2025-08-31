@@ -4,7 +4,7 @@
 
 <template>
   <h1>{{ date.toLocaleDateString() }}</h1>
-  
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
