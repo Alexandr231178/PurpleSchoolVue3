@@ -1,13 +1,20 @@
 <script setup>
   import Button from "./components/Button.vue"
-  const date = new Date();
 </script>
 
 <template>
-  <h1>{{ date.toLocaleDateString() }}</h1>
-  <Button>Сохранить</Button>
+  <main class="main">
+    <Button>Сохранить</Button>
+  </main>
+  
 </template>
 
 <style scoped>
+  .main {
+    background: var(--colog-bg-main);
+    padding: 60px 50px;
+    border-radius: 25px;
+
+  }
 
 </style>
