@@ -7,18 +7,20 @@
 
 <style scoped>
     .button {
+        width: 315px;
         border: none;
-        border-radius: 10px;
-        background: var(--gradient);
-        padding: 14px;
-        font-family: var(--font);
-        font-size: 20px;
-        font-weight: 600;
+        border-radius: 100px;
+        background: var(--color-bg-btn2);
+        padding: 16px 8px;
+        font-family: var(--font2);
+        font-size: 24px;
+        line-height: 36px;
+        font-weight: 400;
         color: var(--primary);
         cursor: pointer; 
     }
 
     .button:hover {
-        background: var(--gradient-inverted);
+        background: var(--color-bg-btn2-hover);
     }
 </style>

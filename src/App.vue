@@ -4,14 +4,14 @@
 
 <template>
   <main class="main">
-    <Button>Сохранить</Button>
+    <Button>Начать игру</Button>
   </main>
   
 </template>
 
 <style scoped>
   .main {
-    background: var(--colog-bg-main);
+    background: var(--colog-bg-main2);
     padding: 60px 50px;
     border-radius: 25px;
 
