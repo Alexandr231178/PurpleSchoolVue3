@@ -1,12 +1,18 @@
 :root {
   --color-primary: #FFFFFF;
   --color-bg: #343D48;
+  --color-bg2: #ffffff;
   --color-primary-inverted: #000000;
   --colog-bg-card: #272E37;
   --colog-bg-main: #222831;
+  --colog-bg-main2: #ffffff;
   --gradient: linear-gradient(91deg, rgba(144, 217, 224, 0.90) 0.2%, rgba(84, 96, 230, 0.90) 100%);
-  --gradient: linear-gradient(256deg, rgba(144, 217, 224, 0.90) 9.04%, rgba(84, 96, 230, 0.90) 100%);
+  --gradient-inverted: linear-gradient(256deg, rgba(144, 217, 224, 0.90) 9.04%, rgba(84, 96, 230, 0.90) 100%);
   --font: "Montserrat", sans-serif;
+  --font2: "Roboto", sans-serif;
+  --color-bg-btn2: rgba(0, 139, 254, 1);
+  --color-bg-btn2-hover: rgb(9, 50, 83);
+
 
 }
 
@@ -17,5 +23,9 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-bg);
+  background-color: var(--color-bg2);
+
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
 }
