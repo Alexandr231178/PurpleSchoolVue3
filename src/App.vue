@@ -4,13 +4,12 @@
   // import CardContainer from "./components/CardContainer.vue";
   import Card from "./components/Card.vue";
 
-  let cardData = {
+  const cardData = {
     cardNumber: "03",
     word: "Auto"
   }
-
   function cardTurnNow(turnCard) {
-    cardData.word = "Автомобиль"
+    pass
   }
 </script>
 
