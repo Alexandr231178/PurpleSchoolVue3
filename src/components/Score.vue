@@ -1,16 +1,14 @@
 <script setup>
-    import { ref } from 'vue';
     import StatisticIcon from '../icons/StatisticIcon.vue';
-
-    // const {stata="0"} = defineProps({
-    //     stata: String,
-    // })
-    const statistica = ref("0");
+    
+    const stat = defineProps({
+        stat: Number,
+    })
 </script>
 
 <template>
     <div class="statistic">
-        <h3 class="statistic-content">{{ statistica }}</h3>
+        <h3 class="statistic-content">{{ stat }}</h3>
         <StatisticIcon />
     </div>
 </template>

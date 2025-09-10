@@ -1,18 +1,13 @@
 <script setup>
-    import { ref } from 'vue';
-    
-    // const {cardNumber="01", word="Word"} = defineProps({
-    //     cardNumber: String,
-    //     word: String
-    // })
 
-    const cardData = ref({
-    cardNumber: "03",
-    word: "Auto",
-    translation: "Автомобиль",
-    state: "closed" | "opened",
-    status: "success" | "fail" | "pending",
-  })
+    const cardData = defineProps({
+        cardNumber: String,
+        word: String,
+        translation: String,
+        state: String,
+        status: String,
+    })
+
 
     const emit = defineEmits(["clickTurn"])
     function turnCard() {

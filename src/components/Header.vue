@@ -1,6 +1,7 @@
 <script setup>
-    import { ref } from 'vue';
     import Score from './Score.vue';
+
+    const stata = defineProps({stata: Number})
 
 </script>
 
@@ -8,7 +9,7 @@
     <header class="header">
         <div class="header-container">
             <h2 class="header-title">Запомни слово</h2>
-            <Score />
+            <Score v-bind="stata"/>
         </div>
     </header> 
 </template>
