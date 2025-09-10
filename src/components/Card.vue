@@ -1,8 +1,18 @@
 <script setup>
-    const {cardNumber="01", word="Word"} = defineProps({
-        cardNumber: String,
-        word: String
-    })
+    import { ref } from 'vue';
+    
+    // const {cardNumber="01", word="Word"} = defineProps({
+    //     cardNumber: String,
+    //     word: String
+    // })
+
+    const cardData = ref({
+    cardNumber: "03",
+    word: "Auto",
+    translation: "Автомобиль",
+    state: "closed" | "opened",
+    status: "success" | "fail" | "pending",
+  })
 
     const emit = defineEmits(["clickTurn"])
     function turnCard() {
@@ -14,8 +24,8 @@
 <template>
     <div class="card">
         <div class="card-content" @click="turnCard()">
-            <div class="card-number">{{ cardNumber }}</div>
-            <h4>{{ word }}</h4>
+            <div class="card-number">{{ cardData.cardNumber }}</div>
+            <h4>{{ cardData.word }}</h4>
             <div class="card-turn">Перевернуть</div>
         </div>
     </div>

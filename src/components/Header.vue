@@ -2,14 +2,13 @@
     import { ref } from 'vue';
     import Score from './Score.vue';
 
-    const statistica = ref("0");
 </script>
 
 <template>
     <header class="header">
         <div class="header-container">
             <h2 class="header-title">Запомни слово</h2>
-            <Score :stata=statistica />
+            <Score />
         </div>
     </header> 
 </template>
