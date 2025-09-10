@@ -1,13 +1,20 @@
 <script setup>
+  import { ref } from "vue";
+
   import Button from "./components/Button.vue"
   import Header from "./components/Header.vue";
   // import CardContainer from "./components/CardContainer.vue";
   import Card from "./components/Card.vue";
 
-  const cardData = {
+
+
+  const cardData = ref({
     cardNumber: "03",
-    word: "Auto"
-  }
+    word: "Auto",
+    translation: "Автомобиль",
+    state: "closed" | "opened",
+    status: "success" | "fail" | "pending",
+  })
   function cardTurnNow(turnCard) {
     pass
   }

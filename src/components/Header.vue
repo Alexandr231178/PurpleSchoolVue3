@@ -1,7 +1,8 @@
 <script setup>
+    import { ref } from 'vue';
     import Score from './Score.vue';
 
-    const statistica = "25";
+    const statistica = ref("0");
 </script>
 
 <template>
