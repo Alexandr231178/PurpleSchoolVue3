@@ -5,7 +5,7 @@
   // import CardContainer from "./components/CardContainer.vue";
   import Card from "./components/Card.vue";
 
-  const statistica = ref(25);
+  const statistica = ref(0);
 
   const cardData = ref({
     cardNumber: "03",
@@ -21,7 +21,7 @@
 
 <template>
   <main class="main">
-    <Header v-bind="statistica" />
+    <Header :stata="statistica" />
     <Card v-bind="cardData" @clickTurn="cardTurnNow"/>
     <Button class="restart-button">Начать заново</Button>
   </main>
@@ -38,6 +38,10 @@
 
   .restart-button {
     margin: 0 auto;
+  }
+
+  p {
+      color: black;
   }
 
 </style>
