@@ -1,23 +1,28 @@
 <script setup>
+  import { ref } from 'vue';
   import Button from "./components/Button.vue"
   import Header from "./components/Header.vue";
   // import CardContainer from "./components/CardContainer.vue";
   import Card from "./components/Card.vue";
 
-  const cardData = {
+  const statistica = ref(25);
+
+  const cardData = ref({
     cardNumber: "03",
-    word: "Auto"
-  }
-  function cardTurnNow(turnCard) {
-    pass
-  }
+    word: "Auto",
+    translation: "Автомобиль",
+    state: "closed",
+    status: "success",
+  })
+
+  function cardTurnNow(turnCard) {}
+
 </script>
 
 <template>
   <main class="main">
-    <Header />
+    <Header v-bind="statistica" />
     <Card v-bind="cardData" @clickTurn="cardTurnNow"/>
-    <!-- <CardContainer v-bind="cardData"/> -->
     <Button class="restart-button">Начать заново</Button>
   </main>
   

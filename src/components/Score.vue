@@ -1,14 +1,14 @@
 <script setup>
     import StatisticIcon from '../icons/StatisticIcon.vue';
-
-    const {stata="0"} = defineProps({
-        stata: String,
+    
+    const stat = defineProps({
+        stat: Number,
     })
 </script>
 
 <template>
     <div class="statistic">
-        <h3 class="statistic-content">{{ stata }}</h3>
+        <h3 class="statistic-content">{{ stat }}</h3>
         <StatisticIcon />
     </div>
 </template>
