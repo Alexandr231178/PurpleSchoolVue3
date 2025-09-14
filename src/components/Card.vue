@@ -1,27 +1,28 @@
 <script setup>
 
-    const cardData = defineProps({
-        cardNumber: String,
-        word: String,
-        translation: String,
-        state: String,
-        status: String,
-    })
+
+    // const cardData = defineProps({
+    //     cardNumber: String,
+    //     word: String,
+    //     translation: String,
+    //     state: String,
+    //     status: String,
+    // })
 
 
-    const emit = defineEmits(["clickTurn"])
-    function turnCard() {
-        emit("clickTurn", "turnCard");
-    }
+    // const emit = defineEmits(["clickTurn"])
+    // function turnCard() {
+    //     emit("clickTurn", "turnCard");
+    // }
 
 </script>
 
 <template>
     <div class="card">
-        <div class="card-content" @click="turnCard()">
+        <div class="card-content">
             <div class="card-number">{{ cardData.cardNumber }}</div>
             <h4>{{ cardData.word }}</h4>
-            <div class="card-turn">Перевернуть</div>
+            <div class="card-turn" @click="turnCard()">Перевернуть</div>
         </div>
     </div>
     
@@ -38,7 +39,7 @@
         background-color: var(--color-bg-card);
         box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.05);
         border-radius: 16px;
-        cursor: pointer;
+
     }
 
 
@@ -85,5 +86,6 @@
         text-transform: uppercase;
         background-color: var(--color-bg-card);
         text-align: center;
+        cursor: pointer;
     }
 </style>

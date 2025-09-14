@@ -2,18 +2,36 @@
   import { ref } from 'vue';
   import Button from "./components/Button.vue"
   import Header from "./components/Header.vue";
-  // import CardContainer from "./components/CardContainer.vue";
-  import Card from "./components/Card.vue";
+  import CardContainer from "./components/CardContainer.vue";
+  
 
   const statistica = ref(0);
 
-  const cardData = ref({
-    cardNumber: "03",
+  const cardDataList = ref([
+    {
+    cardNumber: "01",
     word: "Auto",
     translation: "Автомобиль",
     state: "closed",
     status: "success",
-  })
+  },
+  {
+    cardNumber: "02",
+    word: "Table",
+    translation: "Стол",
+    state: "closed",
+    status: "success",
+  },
+  {
+    cardNumber: "03",
+    word: "Apple",
+    translation: "Яблоко, а не телефон",
+    state: "closed",
+    status: "success",
+  }
+  ]
+    
+)
 
   function cardTurnNow(turnCard) {}
 
@@ -22,8 +40,9 @@
 <template>
   <main class="main">
     <Header :stata="statistica" />
-    <Card v-bind="cardData" @clickTurn="cardTurnNow"/>
+    <CardContainer v-bind="cardDataList"/>
     <Button class="restart-button">Начать заново</Button>
+
   </main>
   
 </template>
