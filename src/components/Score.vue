@@ -1,7 +1,7 @@
 <script setup>
     import StatisticIcon from '../icons/StatisticIcon.vue';
     
-    const {stata = 0} = defineProps({
+    const {stata} = defineProps({
         stata: Number,
     })
 </script>
