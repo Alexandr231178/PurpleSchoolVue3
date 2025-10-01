@@ -7,6 +7,7 @@
   const API_ENDPOINT = 'http://localhost:8080/api/random-words';
 
   let statistica = ref(0);
+  let start = ref(false);
 
   function turnCard(cardNumber) {
     cardDataList.value[cardNumber-1].state = 'opened';
@@ -15,18 +16,21 @@
 
   function changeStatusFail(cardNumber) {
     cardDataList.value[cardNumber-1].status = 'fail';
-    console.log(`Нажата карточка номер ${cardNumber}, статус карточки ${cardDataList.value[cardNumber-1].status}`);
+    //console.log(`Нажата карточка номер ${cardNumber}, статус карточки ${cardDataList.value[cardNumber-1].status}`);
+    statistica.value -= 4;
   }
 
   function changeStatusPending(cardNumber) {
     cardDataList.value[cardNumber-1].status = 'pending';
-    console.log(`Нажата карточка номер ${cardNumber}, статус карточки ${cardDataList.value[cardNumber-1].status}`);
-    statistica.value += 1;
+    //console.log(`Нажата карточка номер ${cardNumber}, статус карточки ${cardDataList.value[cardNumber-1].status}`);
+    statistica.value += 10;
   }
 
   function restart() {
-    //dataForCard(API_ENDPOINT);
-    location.reload()
+    dataForCard(API_ENDPOINT);
+    statistica.value = 0;
+    //location.reload()
+    
   }
 
 
@@ -44,17 +48,22 @@
   // onMounted(()=> {
   //   dataForCard(API_ENDPOINT);
   // })
-
-  dataForCard(API_ENDPOINT);
+  function play() {
+    start.value = true;
+    //console.log("Кнопка Начало нажата")
+    dataForCard(API_ENDPOINT);
+  }
+  
 </script>
 
 <template>
   <main class="main">
     <Header :stata="statistica" />
-    <div class="card-container">
+    <Button v-if="!start" @click="play()">Начать</Button>
+    <div v-if="start" class="card-container">
       <Card v-for="card in cardDataList" :key="card.word" v-bind="card" @click-turn="turnCard" @fail="changeStatusFail" @pending="changeStatusPending"/>
     </div>
-    <Button class="restart-button" @click="restart()">Начать заново</Button>
+    <Button v-if="start" class="restart-button" @click="restart()">Начать заново</Button>
   </main>
   
 </template>
