@@ -1,21 +1,29 @@
 <script setup>
-    import Tickk2 from '../icons/Tickk2.vue';
-    import Tick from '../icons/Tick.vue';
-    import CloseSquare from '../icons/CloseSquare.vue';
-    import CloseSquare2 from '../icons/CloseSquare2.vue';
+    import Tick from "../icons/Tick.vue";
+    import Tickk2 from "../icons/Tickk2.vue";
+    import CloseSquare from "../icons/CloseSquare.vue";
+    import CloseSquare2 from "../icons/CloseSquare2.vue";
 
     const cardData = defineProps({
-        cardNumber: String,
         word: String,
         translation: String,
         state: String,
         status: String,
+        cardNumber: Number,
     })
 
 
-    const emit = defineEmits(["clickTurn"])
+    const emit = defineEmits(["clickTurn", "fail", "pending"])
     function turnCard() {
-        emit("clickTurn", "cardData.cardNumber");
+        emit("clickTurn", cardData.cardNumber);
+    }
+
+    function changeStatusFail() {
+        emit("fail", cardData.cardNumber);
+    }
+
+    function changeStatusPending() {
+        emit("pending", cardData.cardNumber);
     }
 
 </script>
@@ -34,8 +42,8 @@
 
             <div v-if="cardData.status ==='success'" class="card-turn">
                 <div class="close-tick-container">
-                    <CloseSquare />
-                    <Tick />
+                    <CloseSquare @click="changeStatusFail()"/>
+                    <Tick @click="changeStatusPending()"/>
                 </div>
             </div>
             <div v-else class="card-turn">Завершено</div>

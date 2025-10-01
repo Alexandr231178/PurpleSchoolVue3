@@ -1,56 +1,53 @@
 <script setup>
-  import { ref } from 'vue';
+  import { onMounted, ref } from 'vue';
   import Button from "./components/Button.vue"
   import Header from "./components/Header.vue";
   import Card from "./components/Card.vue";
   
+  const API_ENDPOINT = 'http://localhost:8080/api/random-words';
 
-  const statistica = ref(0);
+  let statistica = ref(0);
 
-  const cardDataList = ref([
-    {
-    cardNumber: "01",
-    word: "Auto",
-    translation: "Автомобиль",
-    state: "closed",
-    status: "success",
-    },
-    {
-      cardNumber: "02",
-      word: "Table",
-      translation: "Стол",
-      state: "opened",
-      status: "success",
-    },
-    {
-      cardNumber: "03",
-      word: "Apple",
-      translation: "Яблоко, а не телефон",
-      state: "opened",
-      status: "fail",
-    },
-        {
-      cardNumber: "04",
-      word: "Green",
-      translation: "Зеленый",
-      state: "opened",
-      status: "pending",
-    }
-    ]
-      
-  )
+  function turnCard(cardNumber) {
+    cardDataList.value[cardNumber-1].state = 'opened';
+    // console.log(`Нажата карточка номер ${cardNumber}, статус карточки ${cardDataList.value[cardNumber-1].state}`);
+  }
 
-  // function turnCard(cardNumber) {
-  //   console.log(`Нажата карточка номер ${cardNumber}`)
-  // }
+  function changeStatusFail(cardNumber) {
+    cardDataList.value[cardNumber-1].status = 'fail';
+    console.log(`Нажата карточка номер ${cardNumber}, статус карточки ${cardDataList.value[cardNumber-1].status}`);
+  }
 
+  function changeStatusPending(cardNumber) {
+    cardDataList.value[cardNumber-1].status = 'pending';
+    console.log(`Нажата карточка номер ${cardNumber}, статус карточки ${cardDataList.value[cardNumber-1].status}`);
+    statistica.value += 1;
+  }
+
+
+  let cardDataList = ref([]);
+
+  async function dataForCard(params) {
+    await fetch(params).then(resp=>resp.json()).then(data=>{cardDataList.value = data});
+    cardDataList.value.forEach((element, index) => {
+      element.state = "closed";
+      element.status = "success";
+      element.cardNumber = index + 1;
+    })
+  }
+
+  // onMounted(()=> {
+  //   dataForCard(API_ENDPOINT);
+  // })
+
+  dataForCard(API_ENDPOINT);
 </script>
 
 <template>
   <main class="main">
     <Header :stata="statistica" />
     <div class="card-container">
-      <Card v-for="card in cardDataList" :key="card.cardNumber" v-bind="card"/>
+      <Card v-for="card in cardDataList" :key="card.word" v-bind="card" @click-turn="turnCard" @fail="changeStatusFail" @pending="changeStatusPending"/>
     </div>
     
     <Button class="restart-button">Начать заново</Button>
@@ -67,10 +64,12 @@
   }
 
   .card-container {
+    width: 1300px;
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    margin-bottom: 10vh;
-    gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-bottom: 30px;
+    gap: 15px;
+    margin: 0 auto;
   }
 
   .restart-button {
