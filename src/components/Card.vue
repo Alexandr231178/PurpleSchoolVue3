@@ -1,30 +1,57 @@
 <script setup>
+    import Tick from "../icons/Tick.vue";
+    import Tickk2 from "../icons/Tickk2.vue";
+    import CloseSquare from "../icons/CloseSquare.vue";
+    import CloseSquare2 from "../icons/CloseSquare2.vue";
 
     const cardData = defineProps({
-        cardNumber: String,
         word: String,
         translation: String,
         state: String,
         status: String,
+        cardNumber: Number,
     })
 
 
-    const emit = defineEmits(["clickTurn"])
+    const emit = defineEmits(["clickTurn", "fail", "pending"])
     function turnCard() {
-        emit("clickTurn", "turnCard");
+        emit("clickTurn", cardData.cardNumber);
+    }
+
+    function changeStatusFail() {
+        emit("fail", cardData.cardNumber);
+    }
+
+    function changeStatusPending() {
+        emit("pending", cardData.cardNumber);
     }
 
 </script>
 
 <template>
     <div class="card">
-        <div class="card-content" @click="turnCard()">
+        <div v-if="cardData.state === 'closed'" class="card-content">
             <div class="card-number">{{ cardData.cardNumber }}</div>
             <h4>{{ cardData.word }}</h4>
-            <div class="card-turn">Перевернуть</div>
+            <div v-if="cardData.status ==='success'" class="card-turn" @click="turnCard()">Перевернуть</div>
         </div>
-    </div>
-    
+
+        <div v-if="cardData.state === 'opened'" class="card-content">
+            <div class="card-number">{{ cardData.cardNumber }}</div>
+            <h4>{{ cardData.translation }}</h4>
+
+            <div v-if="cardData.status ==='success'" class="card-turn">
+                <div class="close-tick-container">
+                    <CloseSquare @click="changeStatusFail()"/>
+                    <Tick @click="changeStatusPending()"/>
+                </div>
+            </div>
+            <div v-else class="card-turn">Завершено</div>
+
+            <div v-if="cardData.status ==='fail'" class="result-icon"><CloseSquare2 /></div>
+            <div v-if="cardData.status ==='pending'" class="result-icon"><Tickk2 /></div>
+        </div>
+    </div>    
 </template>
 
 <style scoped>
@@ -38,7 +65,7 @@
         background-color: var(--color-bg-card);
         box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.05);
         border-radius: 16px;
-        cursor: pointer;
+
     }
 
 
@@ -85,5 +112,20 @@
         text-transform: uppercase;
         background-color: var(--color-bg-card);
         text-align: center;
+        cursor: pointer;
+    }
+
+    .close-tick-container {
+        display: flex;
+        width: 80px;
+        justify-content: space-between;
+    }
+
+    .result-icon {
+        position: absolute;
+        top: -25px;
+        left: 90px;
+        z-index: 1;
+
     }
 </style>

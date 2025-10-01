@@ -1,15 +1,16 @@
 <script setup>
     import Score from './Score.vue';
 
-    const stata = defineProps({stata: Number})
-
+    const {stata = 0} = defineProps({
+        stata: Number,
+    })
 </script>
 
 <template>
     <header class="header">
         <div class="header-container">
             <h2 class="header-title">Запомни слово</h2>
-            <Score v-bind="stata"/>
+            <Score :stata="stata" />
         </div>
     </header> 
 </template>
