@@ -24,6 +24,11 @@
     statistica.value += 1;
   }
 
+  function restart() {
+    //dataForCard(API_ENDPOINT);
+    location.reload()
+  }
+
 
   let cardDataList = ref([]);
 
@@ -49,8 +54,7 @@
     <div class="card-container">
       <Card v-for="card in cardDataList" :key="card.word" v-bind="card" @click-turn="turnCard" @fail="changeStatusFail" @pending="changeStatusPending"/>
     </div>
-    
-    <Button class="restart-button">Начать заново</Button>
+    <Button class="restart-button" @click="restart()">Начать заново</Button>
   </main>
   
 </template>
@@ -67,9 +71,9 @@
     width: 1300px;
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    margin-bottom: 30px;
     gap: 15px;
     margin: 0 auto;
+    margin-bottom: 30px;
   }
 
   .restart-button {
